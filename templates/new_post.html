@@ -4,11 +4,30 @@
 
 {% block body %}
 
-    <form method="POST" action="" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <div>
-            <button type="submit">Submit form</button>
+    <div class="container col-sm-6 offset-sm-3">
+        <div class="card p-5 m-5" style="18rem">
+            <div class="card-body ">
+                <h5 class="card-title fs-1 fw-bolder text-center"><u>Upload your image!</u></h5>
+                <div class="card-text">
+                    <form method="POST" action="" id="files" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <div class="text-center">
+                            <button class="btn btn-lg btn-warning" type="submit">U P L O A D</button>
+                        </div>
+                    </form>
+                </div>
+                <img src="..\media\image.png" class="card-img-top my-2 py-4" id="image" alt="Image to be uploaded">
+            </div>
         </div>
+    </div>
+
+
+    <script>
+        document.getElementById('id_image').onchange = function () {
+            var src = URL.createObjectURL(this.files[0])
+            document.getElementById('image').src = src
+        }
+    </script>
 
 {% endblock body %}
